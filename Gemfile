@@ -35,6 +35,8 @@ gem 'devise'
 gem 'pg', '~> 0.18.4'
 gem 'dotenv-rails'
 gem 'rails_admin', '~> 1.3'
+gem 'bootstrap', '~> 4.2.1'
+gem 'jquery-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
