@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_10_013946) do
+ActiveRecord::Schema.define(version: 2019_01_10_015357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,17 +24,29 @@ ActiveRecord::Schema.define(version: 2019_01_10_013946) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "customers_doctors", force: :cascade do |t|
+    t.bigint "doctor_id"
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_customers_doctors_on_customer_id"
+    t.index ["doctor_id"], name: "index_customers_doctors_on_doctor_id"
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "full_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "doctors_customers", force: :cascade do |t|
+  create_table "schedules", force: :cascade do |t|
+    t.string "appointment_type"
+    t.datetime "appointment_start"
+    t.datetime "appointment_end"
     t.bigint "doctor_id"
     t.bigint "customer_id"
-    t.index ["customer_id"], name: "index_doctors_customers_on_customer_id"
-    t.index ["doctor_id"], name: "index_doctors_customers_on_doctor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_schedules_on_customer_id"
+    t.index ["doctor_id"], name: "index_schedules_on_doctor_id"
   end
 
   create_table "users", force: :cascade do |t|
